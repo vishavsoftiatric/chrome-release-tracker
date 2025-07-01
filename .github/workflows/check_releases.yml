@@ -1,0 +1,33 @@
+name: Check Chrome Release Notes
+ 
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour
+  workflow_dispatch:
+ 
+jobs:
+  check:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+ 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+ 
+      - name: Install dependencies
+        run: pip install beautifulsoup4 requests
+ 
+      - name: Run check script
+run: python check_release_notes.py
+ 
+      - name: Commit changes (if any)
+        run: |
+git config --global user.email "action@github.com"
+git config --global user.name "GitHub Action"
+          git add latest.txt
+          git commit -m "Update release notes" || echo "No changes"
+          git push
