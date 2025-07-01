@@ -9,7 +9,7 @@ HEADERS = {"User-Agent": "Mozilla/5.0"}
 def fetch_titles():
 
     response = requests.get(URL, headers=HEADERS)
-
+    response.raise_for_status()
     soup = BeautifulSoup(response.text, 'html.parser')
 
     titles = [h2.text.strip() for h2 in soup.select("h2")]
@@ -32,7 +32,7 @@ def main():
  
     if new_titles != old_titles and new_titles:
 
-        print("🚨 New Chrome Release Detected:", new_titles[0])
+        print(" New Chrome Release Detected:", new_titles[0])
 
         with open("latest.txt", "w") as file:
 
@@ -40,7 +40,7 @@ def main():
 
     else:
 
-        print("✅ No update found.")
+        print(" No update found.")
  
 if __name__ == "__main__":
 
