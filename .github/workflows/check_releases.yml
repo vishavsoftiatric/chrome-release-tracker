@@ -3,7 +3,7 @@ name: Check Chrome Release Notes
 on:
   schedule:
     - cron: '0 * * * *'  # Runs every hour
-  workflow_dispatch:      # Allows manual trigger from GitHub Actions tab
+  workflow_dispatch:
  
 jobs:
   check:
