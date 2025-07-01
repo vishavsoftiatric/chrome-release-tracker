@@ -7,7 +7,7 @@ HEADERS = {"User-Agent": "Mozilla/5.0"}
 def fetch_titles():
     response = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(response.text, 'html.parser')
-titles = [h2.text.strip() for h2 in soup.select("h2")]
+    titles = [h2.text.strip() for h2 in soup.select("h2")]
     return titles
  
 def main():
