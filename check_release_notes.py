@@ -13,7 +13,7 @@ def fetch_titles():
 def main():
     new_titles = fetch_titles()
     with open("latest.txt", "r") as file:
-old_titles = file.read().splitlines()
+        old_titles = file.read().splitlines()
  
     if new_titles != old_titles:
         print("🚨 New Chrome Release Detected:", new_titles[0])
